@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import Script from 'next/script'
 
 import * as Fathom from 'fathom-client'
+import { Analytics } from '@vercel/analytics/react'
 // used for rendering equations (optional)
 import 'katex/dist/katex.min.css'
 import posthog from 'posthog-js'
@@ -99,6 +100,7 @@ export default function App({ Component, pageProps }: AppProps) {
         src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
       />
       <Component {...pageProps} />
+      <Analytics />
     </>
   )
 }
