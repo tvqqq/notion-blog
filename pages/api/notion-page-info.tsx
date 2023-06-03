@@ -65,18 +65,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const imageFallbackUrl = mapImageUrl(libConfig.defaultPageCover, block)
 
   const blockIcon = getBlockIcon(block, recordMap)
-  const authorImageBlockUrl = mapImageUrl(
-    blockIcon && isUrl(blockIcon) ? blockIcon : null,
-    block
-  )
-  const authorImageFallbackUrl = mapImageUrl(libConfig.defaultPageIcon, block)
-  const [authorImage, image] = await Promise.all([
-    getCompatibleImageUrl(authorImageBlockUrl, authorImageFallbackUrl),
-    getCompatibleImageUrl(imageBlockUrl, imageFallbackUrl)
-  ])
+  // const authorImageBlockUrl = mapImageUrl(
+  //   blockIcon && isUrl(blockIcon) ? blockIcon : null,
+  //   block
+  // )
+  // const authorImageFallbackUrl = mapImageUrl(libConfig.defaultPageIcon, block)
+  // const [authorImage, image] = await Promise.all([
+  //   getCompatibleImageUrl(authorImageBlockUrl, authorImageFallbackUrl),
+  //   getCompatibleImageUrl(imageBlockUrl, imageFallbackUrl)
+  // ])
+  const image = await getCompatibleImageUrl(imageBlockUrl, imageFallbackUrl)
 
-  const author =
-    getPageProperty<string>('Author', block, recordMap) || libConfig.author
+  // const author =
+  //   getPageProperty<string>('Author', block, recordMap) || libConfig.author
 
   // const socialDescription =
   //   getPageProperty<string>('Description', block, recordMap) ||
@@ -87,28 +88,33 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   //   block,
   //   recordMap
   // )
-  const publishedTime = getPageProperty<number>('Published', block, recordMap)
-  const datePublished = publishedTime ? new Date(publishedTime) : undefined
+  // const publishedTime = getPageProperty<number>(
+  //   'Published Date',
+  //   block,
+  //   recordMap
+  // )
+  // const datePublished = publishedTime ? new Date(publishedTime) : undefined
   // const dateUpdated = lastUpdatedTime
   //   ? new Date(lastUpdatedTime)
   //   : publishedTime
   //   ? new Date(publishedTime)
   //   : undefined
-  const date =
-    isBlogPost && datePublished
-      ? `${datePublished.toLocaleString('en-US', {
-          month: 'long'
-        })} ${datePublished.getFullYear()}`
-      : undefined
-  const detail = date || author || libConfig.domain
+  // const date =
+  //   isBlogPost && datePublished
+  //     ? `${datePublished.toLocaleString('en-US', {
+  //         month: 'long'
+  //       })} ${datePublished.getFullYear()}`
+  //     : undefined
+  const detail = libConfig.domain
 
   const pageInfo: NotionPageInfo = {
     pageId,
     title,
     image,
     imageObjectPosition,
-    author,
-    authorImage,
+    // author,
+    // authorImage,
+    blockIcon,
     detail
   }
 

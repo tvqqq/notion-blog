@@ -63,7 +63,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       block,
       recordMap
     )
-    const publishedTime = getPageProperty<number>('Published', block, recordMap)
+    const publishedTime = getPageProperty<number>(
+      'Published Date',
+      block,
+      recordMap
+    )
     const date = lastUpdatedTime
       ? new Date(lastUpdatedTime)
       : publishedTime

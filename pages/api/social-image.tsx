@@ -106,11 +106,14 @@ export default async function OGImage(req: NextRequest) {
               backgroundColor: '#fff',
               padding: 24,
               alignItems: 'center',
-              textAlign: 'center'
+              textAlign: 'center',
+              fontSize: 100
             }}
           >
-            {pageInfo.detail && (
-              <div style={{ fontSize: 32, opacity: 0 }}>{pageInfo.detail}</div>
+            {pageInfo.blockIcon && (
+              <div style={{ fontSize: 50, opacity: 1 }}>
+                {pageInfo.blockIcon}
+              </div>
             )}
 
             <div
@@ -131,7 +134,7 @@ export default async function OGImage(req: NextRequest) {
           </div>
         </div>
 
-        {pageInfo.authorImage && (
+        {/* {pageInfo.authorImage && (
           <div
             style={{
               position: 'absolute',
@@ -154,12 +157,13 @@ export default async function OGImage(req: NextRequest) {
               }}
             />
           </div>
-        )}
+        )} */}
       </div>
     ),
     {
       width: 1200,
       height: 630,
+      emoji: 'fluent', // 'blobmoji',
       fonts: [
         {
           name: 'Inter',
