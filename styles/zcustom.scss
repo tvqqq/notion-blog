@@ -1,0 +1,61 @@
+/** ============
+=== GLOBAL ===
+============= **/
+.notion-page-title-text {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+}
+.notion-page-link:hover {
+  background: rgba(255, 255, 255, 0.055);
+}
+.notion-collection-card:hover {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+/** ============
+=== Homepage ===
+============= **/
+.notion-block-c332d92024304fdfaab304c7cdfb669b {
+  // Section Categories
+  .notion-block-091c830a586a479a9a086d0b5700c39b {
+    @media screen and (max-width: 640px) {
+      .notion-column {
+        a.notion-page-link {
+          margin: 15px 0 0;
+        }
+      }
+
+      .notion-blank {
+        margin: -2.5em 0;
+      }
+
+      span.notion-equation {
+        display: none;
+      }
+
+      .notion-blank.notion-block-a56b73ae53fc4861938ef4202993cc2e {
+        margin-bottom: 0px;
+      }
+    }
+  }
+
+  // Section Blog Posts
+  .notion-block-7ce0eb771a4f43c58e7c794c24a43ca1 {
+    .notion-collection-card-property {
+      .notion-page-title-text {
+        font-weight: bold;
+      }
+      .notion-property-select-item {
+        font-size: 120%;
+      }
+    }
+  }
+}
+
+/** Pages have github icon **/
+.notion-block-26aa6809b05e4885abe10b0487e3beca {
+  .notion-external-image {
+    svg > g > path {
+      fill: #fff;
+    }
+  }
+}
