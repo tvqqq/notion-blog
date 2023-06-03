@@ -5,8 +5,7 @@ import { PageBlock } from 'notion-types'
 import {
   getBlockIcon,
   getBlockTitle,
-  getPageProperty,
-  isUrl,
+  getPageProperty, // isUrl,
   parsePageId
 } from 'notion-utils'
 
@@ -46,8 +45,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     })
   }
 
-  const isBlogPost =
-    block.type === 'page' && block.parent_table === 'collection'
+  // const isBlogPost =
+  //   block.type === 'page' && block.parent_table === 'collection'
   const title = getBlockTitle(block, recordMap) || libConfig.name
 
   const imageCoverPosition =
