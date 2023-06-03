@@ -5,8 +5,10 @@ import { PageBlock } from 'notion-types'
 import {
   getBlockIcon,
   getBlockTitle,
-  getPageProperty, // isUrl,
-  parsePageId
+  getPageProperty,
+  isUrl,
+  parsePageId,
+  uuidToId
 } from 'notion-utils'
 
 import * as libConfig from '@/lib/config'
@@ -63,7 +65,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   )
   const imageFallbackUrl = mapImageUrl(libConfig.defaultPageCover, block)
 
-  const blockIcon = getBlockIcon(block, recordMap)
+  let blockIcon = getBlockIcon(block, recordMap)
+  blockIcon = isUrl(blockIcon) ? mapImageUrl(blockIcon, block) : blockIcon
   // const authorImageBlockUrl = mapImageUrl(
   //   blockIcon && isUrl(blockIcon) ? blockIcon : null,
   //   block
@@ -73,7 +76,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   //   getCompatibleImageUrl(authorImageBlockUrl, authorImageFallbackUrl),
   //   getCompatibleImageUrl(imageBlockUrl, imageFallbackUrl)
   // ])
-  const image = await getCompatibleImageUrl(imageBlockUrl, imageFallbackUrl)
+  let image = await getCompatibleImageUrl(imageBlockUrl, imageFallbackUrl)
+  // Special case: Homepage
+  if (uuidToId(pageId) === libConfig.rootNotionPageId) {
+    image = 'https://i.imgur.com/0IKC7BP.png'
+  }
 
   // const author =
   //   getPageProperty<string>('Author', block, recordMap) || libConfig.author

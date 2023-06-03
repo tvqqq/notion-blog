@@ -2,6 +2,7 @@ import * as React from 'react'
 import { NextRequest } from 'next/server'
 
 import { ImageResponse } from '@vercel/og'
+import { isUrl } from 'notion-utils'
 
 import { api, apiHost, rootNotionPageId } from '@/lib/config'
 import { NotionPageInfo } from '@/lib/types'
@@ -110,10 +111,21 @@ export default async function OGImage(req: NextRequest) {
               fontSize: 100
             }}
           >
-            {pageInfo.blockIcon && (
-              <div style={{ fontSize: 50, opacity: 1 }}>
+            {!isUrl(pageInfo.blockIcon) ? (
+              <div style={{ fontSize: 50, opacity: 0.9 }}>
                 {pageInfo.blockIcon}
               </div>
+            ) : (
+              <img
+                src={pageInfo.blockIcon}
+                style={{
+                  height: 100,
+                  width: 100,
+                  borderRadius: '9999px',
+                  boxShadow:
+                    '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
+                }}
+              />
             )}
 
             <div
