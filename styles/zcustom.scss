@@ -13,6 +13,14 @@
 .notion-external-mention {
   display: inline;
   position: static;
+  .notion-external-image {
+    align-items: unset;
+  }
+}
+.notion-asset-wrapper {
+  iframe {
+    background: transparent;
+  }
 }
 
 /** ============
