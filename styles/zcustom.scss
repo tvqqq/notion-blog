@@ -22,6 +22,32 @@
     background: transparent;
   }
 }
+.notion-external-image {
+  svg > g > path {
+    fill: #fff;
+  }
+}
+.notion-link {
+  border-bottom: 0.05em solid;
+  border-color: rgba(255, 255, 255, 0.283);
+  opacity: 0.7;
+  transition: background 20ms ease-in 0s;
+  &:focus,
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+    background-image: unset; // linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
+    opacity: 0.9;
+  }
+}
+.notion-bookmark {
+  transition: background 20ms ease-in 0s;
+  &:hover {
+    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.1);
+    -o-border-image: unset; // linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
+    border-image: unset; // linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
+  }
+}
 
 /** ============
 === Homepage ===
@@ -65,14 +91,5 @@
   // Block Sticker before footer
   .notion-block-3cbaa189fc184e6096ea634c370c153b {
     margin-top: -1em;
-  }
-}
-
-/** Pages have github icon **/
-.notion-block-26aa6809b05e4885abe10b0487e3beca {
-  .notion-external-image {
-    svg > g > path {
-      fill: #fff;
-    }
   }
 }
